@@ -13,9 +13,14 @@
 		594E456D2105725900692D5B /* playLists.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 594E456B2105725900692D5B /* playLists.xcdatamodeld */; };
 		594E456F2105725B00692D5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 594E456E2105725B00692D5B /* Assets.xcassets */; };
 		594E45722105725B00692D5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 594E45702105725B00692D5B /* LaunchScreen.storyboard */; };
+		594E457B21060CA700692D5B /* StructJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594E457A21060CA700692D5B /* StructJSON.swift */; };
+		594E457F21061C5200692D5B /* ThumbnailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594E457D21061C5200692D5B /* ThumbnailViewCell.swift */; };
+		594E458021061C5200692D5B /* ThumbnailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 594E457E21061C5200692D5B /* ThumbnailViewCell.xib */; };
+		A04F86E0B05288D66DB534C3 /* Pods_playLists.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1513C3D0A00CA6BF10EA778 /* Pods_playLists.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05E9ADAC6B0530C332EA5F24 /* Pods-playLists.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playLists.debug.xcconfig"; path = "Pods/Target Support Files/Pods-playLists/Pods-playLists.debug.xcconfig"; sourceTree = "<group>"; };
 		594E45612105725900692D5B /* playLists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playLists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		594E45642105725900692D5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		594E45662105725900692D5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +29,11 @@
 		594E456E2105725B00692D5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		594E45712105725B00692D5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		594E45732105725B00692D5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		594E457A21060CA700692D5B /* StructJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructJSON.swift; sourceTree = "<group>"; };
+		594E457D21061C5200692D5B /* ThumbnailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailViewCell.swift; sourceTree = "<group>"; };
+		594E457E21061C5200692D5B /* ThumbnailViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThumbnailViewCell.xib; sourceTree = "<group>"; };
+		6814EED11E6CDE8F6C888757 /* Pods-playLists.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playLists.release.xcconfig"; path = "Pods/Target Support Files/Pods-playLists/Pods-playLists.release.xcconfig"; sourceTree = "<group>"; };
+		D1513C3D0A00CA6BF10EA778 /* Pods_playLists.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playLists.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A04F86E0B05288D66DB534C3 /* Pods_playLists.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05F81629A9E1EB6384D910ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05E9ADAC6B0530C332EA5F24 /* Pods-playLists.debug.xcconfig */,
+				6814EED11E6CDE8F6C888757 /* Pods-playLists.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		34E1CFF0838DD733B3AD0291 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D1513C3D0A00CA6BF10EA778 /* Pods_playLists.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		594E45582105725900692D5B = {
 			isa = PBXGroup;
 			children = (
 				594E45632105725900692D5B /* playLists */,
 				594E45622105725900692D5B /* Products */,
+				05F81629A9E1EB6384D910ED /* Pods */,
+				34E1CFF0838DD733B3AD0291 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +86,8 @@
 		594E45632105725900692D5B /* playLists */ = {
 			isa = PBXGroup;
 			children = (
+				594E457C21061AF600692D5B /* ThumbnailView */,
+				594E457921060C9300692D5B /* Structure */,
 				594E45642105725900692D5B /* AppDelegate.swift */,
 				594E45662105725900692D5B /* ViewController.swift */,
 				594E45682105725900692D5B /* Main.storyboard */,
@@ -67,6 +99,23 @@
 			path = playLists;
 			sourceTree = "<group>";
 		};
+		594E457921060C9300692D5B /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				594E457A21060CA700692D5B /* StructJSON.swift */,
+			);
+			path = Structure;
+			sourceTree = "<group>";
+		};
+		594E457C21061AF600692D5B /* ThumbnailView */ = {
+			isa = PBXGroup;
+			children = (
+				594E457D21061C5200692D5B /* ThumbnailViewCell.swift */,
+				594E457E21061C5200692D5B /* ThumbnailViewCell.xib */,
+			);
+			path = ThumbnailView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 594E45762105725B00692D5B /* Build configuration list for PBXNativeTarget "playLists" */;
 			buildPhases = (
+				34D5705CFD95765540F37248 /* [CP] Check Pods Manifest.lock */,
 				594E455D2105725900692D5B /* Sources */,
 				594E455E2105725900692D5B /* Frameworks */,
 				594E455F2105725900692D5B /* Resources */,
+				2C821ED305B1995B0D5571C4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				594E45722105725B00692D5B /* LaunchScreen.storyboard in Resources */,
+				594E458021061C5200692D5B /* ThumbnailViewCell.xib in Resources */,
 				594E456F2105725B00692D5B /* Assets.xcassets in Resources */,
 				594E456A2105725900692D5B /* Main.storyboard in Resources */,
 			);
@@ -133,11 +185,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2C821ED305B1995B0D5571C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-playLists/Pods-playLists-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-playLists/Pods-playLists-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		34D5705CFD95765540F37248 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-playLists-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		594E455D2105725900692D5B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594E457F21061C5200692D5B /* ThumbnailViewCell.swift in Sources */,
+				594E457B21060CA700692D5B /* StructJSON.swift in Sources */,
 				594E45672105725900692D5B /* ViewController.swift in Sources */,
 				594E45652105725900692D5B /* AppDelegate.swift in Sources */,
 				594E456D2105725900692D5B /* playLists.xcdatamodeld in Sources */,
@@ -282,6 +375,7 @@
 		};
 		594E45772105725B00692D5B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05E9ADAC6B0530C332EA5F24 /* Pods-playLists.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +394,7 @@
 		};
 		594E45782105725B00692D5B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6814EED11E6CDE8F6C888757 /* Pods-playLists.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

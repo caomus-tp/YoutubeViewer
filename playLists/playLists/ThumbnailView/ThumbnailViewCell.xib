@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="thumbnail" rowHeight="144" id="KGk-i7-Jjw" customClass="ThumbnailViewCell" customModule="playLists" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="548" height="144"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="548" height="143.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rrW-vh-K0m">
+                        <rect key="frame" x="0.0" y="0.0" width="192" height="144"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="rrW-vh-K0m" secondAttribute="height" multiplier="4:3" id="r78-Ma-OCa"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MW1-Zx-3FS">
+                        <rect key="frame" x="200" y="0.0" width="328" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="MW1-Zx-3FS" secondAttribute="trailing" constant="20" id="54z-o7-iyS"/>
+                    <constraint firstItem="MW1-Zx-3FS" firstAttribute="leading" secondItem="rrW-vh-K0m" secondAttribute="trailing" constant="8" id="Bcr-Vg-Yf6"/>
+                    <constraint firstItem="MW1-Zx-3FS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="EoH-Qi-TD9"/>
+                    <constraint firstItem="rrW-vh-K0m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GBD-Nw-9Xc"/>
+                    <constraint firstAttribute="bottom" secondItem="rrW-vh-K0m" secondAttribute="bottom" constant="-0.5" id="ITl-3c-urb"/>
+                    <constraint firstItem="rrW-vh-K0m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="O3G-e9-zvj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgThumbnail" destination="rrW-vh-K0m" id="Wv2-l7-akY"/>
+                <outlet property="txtTitle" destination="MW1-Zx-3FS" id="aKF-Be-nwB"/>
+            </connections>
+            <point key="canvasLocation" x="148" y="104"/>
+        </tableViewCell>
+    </objects>
+</document>
