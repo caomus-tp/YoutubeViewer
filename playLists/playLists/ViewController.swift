@@ -35,7 +35,7 @@ class PlaylistsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tabelIsOpened.isOpen[section] == true {
-            return tableData.playlists.count + 1
+            return tableData.playlists[section].list_items.count + 1
         }
         else {
             return 1
@@ -49,15 +49,14 @@ class PlaylistsController: UITableViewController {
             return cell
         }
         else {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ThumbnailViewCell") else { return UITableViewCell()}
-//            cell.textLabel?.text = tableData.playlists[indexPath.section].list_items[indexPath.row - 1].title
+            let dataIndex = indexPath.row - 1
             let cell = Bundle.main.loadNibNamed("ThumbnailViewCell", owner: self, options: nil)?.first as! ThumbnailViewCell
             DispatchQueue.main.async {
-                let url = URL(string: self.tableData.playlists[indexPath.section].list_items[indexPath.row].thumb)
+                let url = URL(string: self.tableData.playlists[indexPath.section].list_items[dataIndex].thumb)
                 let data = try? Data(contentsOf: url!)
                 cell.imgThumbnail.image = UIImage(data: data!)
             }
-            cell.txtTitle.text = tableData.playlists[indexPath.section].list_items[indexPath.row].title
+            cell.txtTitle.text = tableData.playlists[indexPath.section].list_items[dataIndex].title
             
             return cell
         }
