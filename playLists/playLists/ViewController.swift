@@ -15,6 +15,14 @@ class PlaylistsController: UITableViewController {
     
     var tableData = PlayLists()
     var tabelIsOpened = IsExplaneind()
+    var imageThumbnail:String!
+    var titleName:String!
+    var linkVideo:String!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let videoPlayerController = segue.destination as! VideoPlayerCV
+        videoPlayerController.commonInit(pathTitle: self.titleName, pathThumb: self.imageThumbnail, pathLink: self.linkVideo)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,16 +71,27 @@ class PlaylistsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tabelIsOpened.isOpen[indexPath.section] == true {
-            tabelIsOpened.isOpen[indexPath.section] = false
-            let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
+        if indexPath.row == 0
+        {
+            if tabelIsOpened.isOpen[indexPath.section] == true {
+                tabelIsOpened.isOpen[indexPath.section] = false
+                let sections = IndexSet.init(integer: indexPath.section)
+                tableView.reloadSections(sections, with: .none)
+            }
+            else {
+                tabelIsOpened.isOpen[indexPath.section] = true
+                let sections = IndexSet.init(integer: indexPath.section)
+                tableView.reloadSections(sections, with: .none)
+            }
         }
         else {
-            tabelIsOpened.isOpen[indexPath.section] = true
-            let sections = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(sections, with: .none)
+            let dataIndex = indexPath.row - 1
+            self.imageThumbnail = tableData.playlists[indexPath.section].list_items[dataIndex].thumb
+            self.titleName = tableData.playlists[indexPath.section].list_items[dataIndex].title
+            self.linkVideo = tableData.playlists[indexPath.section].list_items[dataIndex].link
+            performSegue(withIdentifier: "segue", sender: self)
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
