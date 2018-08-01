@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import AVKit
 import YouTubePlayer
+
+protocol Delegate {
+    func callBackMainList(with currentTime: Float)
+}
 
 class VideoPlayerCV: UIViewController, YouTubePlayerDelegate {
 
+    var delegate: Delegate?
+    
     @IBOutlet weak var videoPlayer: YouTubePlayerView!
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var btnClose: UIButton!
@@ -18,32 +25,29 @@ class VideoPlayerCV: UIViewController, YouTubePlayerDelegate {
     @IBOutlet weak var btnDuration: UIButton!
     @IBOutlet weak var btnCurrent: UIButton!
     
-    var pathThumb:String!
+    var pathThumb:UIImage!
     var urlVideo: String!
     var pathTitle:String!
+    var currentTime:Float!
+    var seekTime:Float!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        DispatchQueue.main.async {
-            let urlImage = URL(string: self.pathThumb)
-            let data = try? Data(contentsOf: urlImage!)
-            self.thumbnail.image = UIImage(data: data!)
-        }
+//        self.thumbnail.image = self.pathThumb
         let urlLink = URL(string: self.urlVideo)
         self.videoPlayer.delegate = self
         self.videoPlayer.playerVars = [
             "playsinline": "1" as AnyObject,
             "controls" : "0" as AnyObject,
             "autohide" : "1" as AnyObject,
-            "showinfo" : "1" as AnyObject,
+            "showinfo" : "0" as AnyObject,
             "autoplay" : "0" as AnyObject,
-            "fs" : "1" as AnyObject,
-            "rel" : "1" as AnyObject,
+            "fs" : "0" as AnyObject,
+            "rel" : "0" as AnyObject,
             "loop" : "0" as AnyObject,
             "enablejsapi" : "1" as AnyObject,
-            "modestbranding" : "0" as AnyObject] as YouTubePlayerView.YouTubePlayerParameters
+            "modestbranding" : "1" as AnyObject] as YouTubePlayerView.YouTubePlayerParameters
         
         self.videoPlayer.loadVideoURL(urlLink!)
     }
@@ -53,25 +57,45 @@ class VideoPlayerCV: UIViewController, YouTubePlayerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func commonInit(pathTitle:String, pathThumb:String, pathLink:String) {
+    func commonInit(pathTitle:String, pathThumb:UIImage, pathLink:String) {
         self.pathThumb = pathThumb
         self.pathTitle = pathTitle
         self.urlVideo = pathLink
     }
     
     func playerReady(_ videoPlayer: YouTubePlayerView) {
-        print("Player Ready!")
-        videoPlayer.play()
+        self.videoPlayer.backgroundColor = UIColor(white: 1, alpha: 1.0)
+//        videoPlayer.play()
+        self.videoPlayer.backgroundColor = UIColor.black.withAlphaComponent(1)
     }
     
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
         print("Player state changed!")
     }
     
+    func playerQualityChanged(videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
+        print("Player quality changed!")
+    }
+    
+    func passDataBackwards() {        
+        delegate?.callBackMainList(with: self.currentTime)
+    }
+    
     @IBAction func play(_ sender: Any) {
         if self.videoPlayer.ready {
             if self.videoPlayer.playerState != YouTubePlayerState.Playing {
                 self.videoPlayer.play()
+//                print("Player Ready!")
+//                let urlLink = URL(string: self.urlVideo)
+//                print(urlLink!.absoluteURL)
+//                let video = AVPlayer(url: urlLink!)
+//                let videoPlayer = AVPlayerViewController()
+//                videoPlayer.player = video
+//
+//                present(videoPlayer, animated: true, completion:
+//                {
+//                    video.play()
+//                })
                 self.btnPlay.setTitle("Pasue", for: .normal)
             } else {
                 self.videoPlayer.pause()
@@ -90,6 +114,10 @@ class VideoPlayerCV: UIViewController, YouTubePlayerDelegate {
     }
 
     @IBAction func onCloseVideo(_ sender: Any) {
+        //
+        self.currentTime = 30.0
+        print("back\(self.currentTime)")
+        passDataBackwards()
     }
     
 }

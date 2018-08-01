@@ -15,13 +15,16 @@ class PlaylistsController: UITableViewController {
     
     var tableData = PlayLists()
     var tabelIsOpened = IsExplaneind()
-    var imageThumbnail:String!
+    var imageThumbnail:UIImage!
     var titleName:String!
     var linkVideo:String!
+    
+    var currentTime:Float!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let videoPlayerController = segue.destination as! VideoPlayerCV
         videoPlayerController.commonInit(pathTitle: self.titleName, pathThumb: self.imageThumbnail, pathLink: self.linkVideo)
+        videoPlayerController.delegate = self as? Delegate
     }
 
     override func viewDidLoad() {
@@ -62,7 +65,8 @@ class PlaylistsController: UITableViewController {
             DispatchQueue.main.async {
                 let url = URL(string: self.tableData.playlists[indexPath.section].list_items[dataIndex].thumb)
                 let data = try? Data(contentsOf: url!)
-                cell.imgThumbnail.image = UIImage(data: data!)
+                self.imageThumbnail = UIImage(data: data!)
+                cell.imgThumbnail.image = self.imageThumbnail
             }
             cell.txtTitle.text = tableData.playlists[indexPath.section].list_items[dataIndex].title
             
@@ -86,7 +90,7 @@ class PlaylistsController: UITableViewController {
         }
         else {
             let dataIndex = indexPath.row - 1
-            self.imageThumbnail = tableData.playlists[indexPath.section].list_items[dataIndex].thumb
+//            self.imageThumbnail = tableData.playlists[indexPath.section].list_items[dataIndex].thumb
             self.titleName = tableData.playlists[indexPath.section].list_items[dataIndex].title
             self.linkVideo = tableData.playlists[indexPath.section].list_items[dataIndex].link
             performSegue(withIdentifier: "segue", sender: self)
@@ -110,6 +114,7 @@ class PlaylistsController: UITableViewController {
                 PlayLists.VideoInfo(title: "Charlie Puth - We Don't Talk Anymore (feat. Selena Gomez) [Official Video]", link: "https://www.youtube.com/watch?v=3AtDnEC4zak", thumb: "https://i.ytimg.com/vi/3AtDnEC4zak/hqdefault.jpg")])
             ])
         tabelIsOpened = IsExplaneind(isOpen: [false, false])
+//        currentTime = CurrentTime(currentTiem: [0.0f, 0.0f, ])
     }
     
     func onLoadAPI(_ url:String) {
@@ -141,8 +146,14 @@ class PlaylistsController: UITableViewController {
                 }
                 self.tableData = try JSONDecoder().decode(PlayLists.self, from: data!)
                 DispatchQueue.main.async {
+//                     self.tabelIsOpened = 
+//                    for index in 0...self.tableData.playlists.count {
+//                        self.tabelIsOpened.isOpen[index] = false
+//                    }
                     self.tableViewPlaylists.reloadData()
                 }
+                
+               
                 print("The jsonString is: " + jsonString.description)
             } catch  {
                 print("error trying to convert data to JSON")
@@ -150,6 +161,11 @@ class PlaylistsController: UITableViewController {
             }
         }
         task.resume()
+    }
+    
+    func callBackMainList(with _currentTaime:Float) {
+        print("callback delegate \(_currentTaime)")
+        self.currentTime = _currentTaime
     }
     
 }

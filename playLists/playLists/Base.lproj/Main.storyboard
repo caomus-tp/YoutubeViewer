@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Playlists Controller-->
+        <!--Video List-->
         <scene sceneID="vZu-cD-H9b">
             <objects>
                 <tableViewController id="nnc-zS-lmI" customClass="PlaylistsController" customModule="playLists" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,10 +43,10 @@
                             <outlet property="delegate" destination="nnc-zS-lmI" id="Hfn-Un-UX4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="cWN-c7-FU8"/>
+                    <navigationItem key="navigationItem" title="Video List" id="cWN-c7-FU8"/>
                     <connections>
                         <outlet property="tableViewPlaylists" destination="ooi-aS-AYo" id="6qo-8U-fR5"/>
-                        <segue destination="Nkt-I8-DgA" kind="modal" identifier="segue" id="rdH-A7-H8H"/>
+                        <segue destination="Nkt-I8-DgA" kind="push" identifier="segue" id="rdH-A7-H8H"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBk-c5-ul1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -61,49 +61,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PTE-J5-PKQ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="211"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="PTE-J5-PKQ" secondAttribute="height" multiplier="16:9" id="H9O-7r-c0b"/>
-                                </constraints>
-                            </imageView>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="KGO-JL-2Z3" customClass="YouTubePlayerView" customModule="YouTubePlayer">
-                                <rect key="frame" x="0.0" y="20" width="375" height="211"/>
+                            <view clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="KGO-JL-2Z3" customClass="YouTubePlayerView" customModule="YouTubePlayer">
+                                <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="KGO-JL-2Z3" secondAttribute="height" multiplier="16:9" id="tKz-dQ-ZNj"/>
+                                    <constraint firstAttribute="width" secondItem="KGO-JL-2Z3" secondAttribute="height" multiplier="16:9" priority="750" id="H4c-ps-zfr"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYu-wr-j1P" userLabel="btnClose">
-                                <rect key="frame" x="16" y="34" width="32" height="32"/>
-                                <color key="tintColor" red="0.2784313725" green="0.75686274509999996" blue="0.69411764710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" backgroundImage="icon_close">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="onCloseVideo:" destination="Nkt-I8-DgA" eventType="touchUpInside" id="3wy-6E-CO8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hK-jw-LWr" userLabel="btnPlay">
-                                <rect key="frame" x="172" y="276" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hK-jw-LWr" userLabel="btnPlay">
+                                <rect key="frame" x="16" y="283" width="160" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="ddX-sw-mwi"/>
+                                </constraints>
                                 <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="play:" destination="Nkt-I8-DgA" eventType="touchUpInside" id="bR1-tY-qYr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co8-0e-mVj" userLabel="btnDuration">
-                                <rect key="frame" x="16" y="339" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co8-0e-mVj" userLabel="btnDuration">
+                                <rect key="frame" x="16" y="321" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Co8-0e-mVj" secondAttribute="height" multiplier="343:30" id="pwn-BY-daX"/>
+                                </constraints>
+                                <state key="normal" title="Get Duration"/>
                                 <connections>
                                     <action selector="onGetDurationTime:" destination="Nkt-I8-DgA" eventType="touchUpInside" id="qmP-Rx-fO2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHH-7P-vL0" userLabel="btnCurrent">
-                                <rect key="frame" x="16" y="387" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHH-7P-vL0" userLabel="btnCurrent">
+                                <rect key="frame" x="16" y="359" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XHH-7P-vL0" secondAttribute="height" multiplier="343:30" id="MZT-QW-tQX"/>
+                                </constraints>
+                                <state key="normal" title="Get Current Time"/>
                                 <connections>
                                     <action selector="onGetCurrentTime:" destination="Nkt-I8-DgA" eventType="touchUpInside" id="L3O-gY-vXO"/>
                                 </connections>
@@ -111,34 +101,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PTE-J5-PKQ" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" id="6Ds-w2-A3z"/>
-                            <constraint firstItem="xWt-m8-dLT" firstAttribute="trailing" secondItem="kYu-wr-j1P" secondAttribute="trailing" constant="327" id="H7e-bS-q5p"/>
-                            <constraint firstItem="PTE-J5-PKQ" firstAttribute="top" secondItem="xWt-m8-dLT" secondAttribute="top" id="QaK-DP-Ome"/>
-                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" id="SVE-mY-Ur7"/>
-                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="top" secondItem="xWt-m8-dLT" secondAttribute="top" id="U3P-Zk-oiH"/>
-                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="trailing" secondItem="xWt-m8-dLT" secondAttribute="trailing" id="UZM-XM-8N6"/>
-                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="top" secondItem="xWt-m8-dLT" secondAttribute="top" id="XKZ-o7-gXg"/>
-                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" id="ah4-St-UgN"/>
-                            <constraint firstItem="PTE-J5-PKQ" firstAttribute="trailing" secondItem="xWt-m8-dLT" secondAttribute="trailing" id="cHP-Lv-OvC"/>
-                            <constraint firstItem="kYu-wr-j1P" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" constant="16" id="e9U-A6-n2A"/>
-                            <constraint firstItem="kYu-wr-j1P" firstAttribute="top" secondItem="xWt-m8-dLT" secondAttribute="top" constant="14" id="iCM-Hv-Yr7"/>
-                            <constraint firstItem="xWt-m8-dLT" firstAttribute="bottom" secondItem="kYu-wr-j1P" secondAttribute="bottom" constant="601" id="lcG-4Z-Ucy"/>
-                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="trailing" secondItem="xWt-m8-dLT" secondAttribute="trailing" id="tbD-pc-mbQ"/>
+                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="trailing" secondItem="xWt-m8-dLT" secondAttribute="trailing" id="45z-Mz-8xY"/>
+                            <constraint firstItem="xWt-m8-dLT" firstAttribute="trailing" secondItem="XHH-7P-vL0" secondAttribute="trailing" constant="16" id="CWB-FD-8WU"/>
+                            <constraint firstItem="xWt-m8-dLT" firstAttribute="trailing" secondItem="Co8-0e-mVj" secondAttribute="trailing" constant="16" id="Icx-AE-fsQ"/>
+                            <constraint firstItem="XHH-7P-vL0" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" constant="16" id="MWE-5Y-6ve"/>
+                            <constraint firstItem="Co8-0e-mVj" firstAttribute="top" secondItem="KGO-JL-2Z3" secondAttribute="bottom" constant="46" id="NTP-p1-mML"/>
+                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="top" secondItem="xWt-m8-dLT" secondAttribute="top" id="Qqq-gM-12M"/>
+                            <constraint firstItem="8hK-jw-LWr" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" constant="16" id="VSs-ou-fXj"/>
+                            <constraint firstItem="XHH-7P-vL0" firstAttribute="top" secondItem="KGO-JL-2Z3" secondAttribute="bottom" constant="84" id="dzF-88-dVh"/>
+                            <constraint firstItem="KGO-JL-2Z3" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" id="e5m-yu-Ud8"/>
+                            <constraint firstItem="8hK-jw-LWr" firstAttribute="top" secondItem="KGO-JL-2Z3" secondAttribute="bottom" constant="8" id="h7u-iW-Fca"/>
+                            <constraint firstItem="Co8-0e-mVj" firstAttribute="leading" secondItem="xWt-m8-dLT" secondAttribute="leading" constant="16" id="qRK-dq-ZOH"/>
+                            <constraint firstItem="8hK-jw-LWr" firstAttribute="top" secondItem="KGO-JL-2Z3" secondAttribute="bottom" constant="8" id="yzT-F3-vl0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xWt-m8-dLT"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bwz-GG-1we"/>
                     <connections>
-                        <outlet property="btnClose" destination="kYu-wr-j1P" id="UWE-0o-EGL"/>
                         <outlet property="btnCurrent" destination="XHH-7P-vL0" id="Q4y-Xz-FvB"/>
                         <outlet property="btnDuration" destination="Co8-0e-mVj" id="Gsz-Ct-38G"/>
                         <outlet property="btnPlay" destination="8hK-jw-LWr" id="FuQ-9Z-V7E"/>
-                        <outlet property="thumbnail" destination="PTE-J5-PKQ" id="dZe-tr-wVe"/>
                         <outlet property="videoPlayer" destination="KGO-JL-2Z3" id="1j1-V5-vut"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L34-Fe-419" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2357.5999999999999" y="58.920539730134934"/>
+            <point key="canvasLocation" x="2357.5999999999999" y="47.226386806596707"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SEO-nY-RLC">
@@ -159,7 +147,4 @@
             <point key="canvasLocation" x="420" y="48.125937031484263"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="icon_close" width="32" height="32"/>
-    </resources>
 </document>

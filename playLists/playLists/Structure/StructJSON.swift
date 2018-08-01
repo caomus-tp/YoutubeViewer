@@ -30,3 +30,7 @@ struct PlayLists: Decodable {
 struct IsExplaneind {
     var isOpen = [Bool]()
 }
+
+struct CurrentTime {
+    var currentTiem = [Float]()
+}
